@@ -23,6 +23,10 @@ if (option == "-w")
     Console.WriteLine($"{GetFileWords(path)} {path}");
 }
 
+if (option == "-m")
+{
+    Console.WriteLine($"{GetFileChars(path)} {path}");
+}
 
 
 static long GetFileBytes(string path)
@@ -68,4 +72,33 @@ static long GetFileWords(string path)
     }
 
     return wordCount;
+}
+
+static long GetFileChars(string path)
+{
+    // long charCount = 0;
+    // foreach (string line in File.ReadLines(path))
+    // {
+    //     charCount += line.Length + 1;
+    //     // foreach (char c in line)
+    //     // {
+    //     //     if (!(char.IsWhiteSpace(c)))
+    //     //     {
+    //     //         charCount++;
+    //     //     }
+    //     // }
+    // }
+
+    // return charCount;
+
+    long charCount = 0;
+    using (StreamReader sr = new StreamReader(path))
+    {
+        int i = default;
+        while((i = sr.Read()) != -1)
+        {
+            charCount++;
+        }
+    }
+    return charCount + 1;
 }
