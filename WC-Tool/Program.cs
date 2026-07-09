@@ -13,6 +13,12 @@ if (option == "-c")
 }
 
 
+if (option == "-l")
+{
+    Console.WriteLine($"{GetFileLines(path)} {path}");
+}
+
+
 
 static long GetFileBytes(string path)
 {
@@ -20,4 +26,16 @@ static long GetFileBytes(string path)
     long size = fi.Length;
 
     return size;
+}
+
+static long GetFileLines(string path)
+{
+    StreamReader sr = new StreamReader(path);
+    long counter = 0;
+    while (sr.ReadLine() != null)
+    {
+        counter++;
+    }
+    
+    return counter;
 }
