@@ -1,5 +1,23 @@
-﻿
+﻿// Take the prompt from user
+Console.Write(">");
+string prompt = Console.ReadLine();
 
-FileInfo file = new FileInfo("test.txt");
+// extract details of prompt
+var command = prompt.Split(' ')[0];
+var option = prompt.Split(' ')[1];
+var path = prompt.Split(' ')[2];
 
-Console.WriteLine(file.Length);
+if (option == "-c")
+{
+    Console.WriteLine(GetFileBytes(path));
+}
+
+
+
+static long GetFileBytes(string path)
+{
+    FileInfo fi = new FileInfo(path);
+    long size = fi.Length;
+
+    return size;
+}
