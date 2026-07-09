@@ -9,7 +9,7 @@ var path = prompt.Split(' ')[2];
 
 if (option == "-c")
 {
-    Console.WriteLine(GetFileBytes(path));
+    Console.WriteLine($"{GetFileBytes(path)} {path}");
 }
 
 
