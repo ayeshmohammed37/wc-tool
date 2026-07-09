@@ -1,11 +1,17 @@
 ﻿// Take the prompt from user
 Console.Write(">");
-string prompt = Console.ReadLine();
+var prompt = Console.ReadLine().Split(' ');
 
+if (prompt.Length == 2)
+{
+    string file = prompt[1];
+    Console.WriteLine($"{GetFileLines(file)} {GetFileWords(file)} {GetFileBytes(file)} {file}");
+    return;
+}
 // extract details of prompt
-var command = prompt.Split(' ')[0];
-var option = prompt.Split(' ')[1];
-var path = prompt.Split(' ')[2];
+var command = prompt[0];
+var option = prompt[1];
+var path = prompt[2];
 
 if (option == "-c")
 {
