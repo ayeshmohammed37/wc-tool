@@ -18,6 +18,11 @@ if (option == "-l")
     Console.WriteLine($"{GetFileLines(path)} {path}");
 }
 
+if (option == "-w")
+{
+    Console.WriteLine($"{GetFileWords(path)} {path}");
+}
+
 
 
 static long GetFileBytes(string path)
@@ -36,6 +41,31 @@ static long GetFileLines(string path)
     {
         counter++;
     }
-    
+
     return counter;
+}
+
+static long GetFileWords(string path)
+{
+    long wordCount = 0;
+
+    foreach (string line in File.ReadLines(path))
+    {
+        bool inWord = false;
+
+        foreach (char c in line)
+        {
+            if (char.IsWhiteSpace(c))
+            {
+                inWord = false;
+            }
+            else if (!inWord)
+            {
+                wordCount++;
+                inWord = true;
+            }
+        }
+    }
+
+    return wordCount;
 }
